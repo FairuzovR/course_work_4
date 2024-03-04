@@ -5,10 +5,10 @@ import json
 class BaseAPI(ABC):
     @abstractmethod
     def get_vacancies(self, keyword, town):
-        raise TypeError("Обязательно ввидите ключевое слово наименования вакансии")
+        pass
 
-class Apihh():
-    def __init__(self):  #             "clusters": "true"
+class Apihh(BaseAPI):
+    def __init__(self):
         self.base_params = {
             "only_with_salary": "true",
             "enable_snippets": "true",
@@ -24,8 +24,8 @@ class Apihh():
         self.base_params['area'] = town
         self.base_params['text'] = keyword
         response = requests.get(self.url, params=self.base_params)
-        data = response.json()
-        return data
+        self.data = response.json()
+        return self.data
 
 # a = Apihh()
 # print(a.get_vacancies('Космонавт', 99))
