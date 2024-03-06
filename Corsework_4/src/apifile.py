@@ -1,14 +1,23 @@
 from abc import ABC, abstractmethod
 import requests
-import json
+
 
 class BaseAPI(ABC):
+    """
+    Абстрактный класс с работой по запросу информации с hh.ru
+    """
     @abstractmethod
     def get_vacancies(self, keyword, town):
         pass
 
+
 class Apihh(BaseAPI):
+    """
+    Класс для работы с запросом вакансии с hh.ru
+    """
+
     def __init__(self):
+        self.data = None
         self.base_params = {
             "only_with_salary": "true",
             "enable_snippets": "true",
@@ -21,11 +30,10 @@ class Apihh(BaseAPI):
         self.url = 'https://api.hh.ru/vacancies'
 
     def get_vacancies(self, keyword, town):
+        """Метод класса запроса вакансий по заданным параметрам"""
         self.base_params['area'] = town
         self.base_params['text'] = keyword
         response = requests.get(self.url, params=self.base_params)
         self.data = response.json()
         return self.data
-
-# a = Apihh()
-# print(a.get_vacancies('Космонавт', 99))
+    
