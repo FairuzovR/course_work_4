@@ -51,6 +51,7 @@ class Vacancy:
             "title": self.title,
             "url": self.url,
             "salary_from": self.salary_from,
+            "salary_to": self.salary_to,
             "company_name": self.company_name
         }
 
