@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 import requests
-
+import sys
 
 class BaseAPI(ABC):
     """
@@ -36,4 +36,9 @@ class Apihh(BaseAPI):
         response = requests.get(self.url, params=self.base_params)
         self.data = response.json()
         return self.data
-    
+#
+# a = Apihh()
+# print(a.get_vacancies("Космонавт", 99))
+#
+#
+print(sys.path)
